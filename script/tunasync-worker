@@ -1,20 +1,20 @@
 #!/bin/sh
-# Provides:          tunasync-manager
+# Provides:          tunasync-worker
 # Description:       Mirror job management tool.
 
 # Author: whsir <wh@whsir.com>
 # Change: Jeff
 
 NAME=tunasync
-TUNASYNC_NAME=tunasync-manager
+TUNASYNC_NAME=tunasync-worker
 TUNASYNC_BIN=/usr/local/bin/$NAME
-OPTIONS="manager --config /data/tunasync/manager.conf"
+OPTIONS="worker --config /etc/tunasync/worker.conf"
 StatBin=/bin/ps
 
 case "$1" in
     start)
-        if $StatBin -ef | grep -v grep | grep -q "tunasync manager";then
-            TUNASYNC_PID=`ps -ef | grep -v grep | grep "tunasync manager" | awk -F" " '{print $2}'`
+        if $StatBin -ef | grep -v grep | grep -q "tunasync worker";then
+            TUNASYNC_PID=`ps -ef | grep -v grep | grep "tunasync worker" | awk -F" " '{print $2}'`
             echo "$TUNASYNC_NAME (pid $TUNASYNC_PID) already running."
         else
             $TUNASYNC_BIN $OPTIONS > /dev/null &
@@ -23,8 +23,8 @@ case "$1" in
     ;;
 
     status)
-        if $StatBin -ef | grep -v grep | grep -q "tunasync manager";then
-            TUNASYNC_PID=`ps -ef | grep -v grep | grep "tunasync manager" | awk -F" " '{print $2}'`
+        if $StatBin -ef | grep -v grep | grep -q "tunasync worker";then
+            TUNASYNC_PID=`ps -ef | grep -v grep | grep "tunasync worker" | awk -F" " '{print $2}'`
             echo "$TUNASYNC_NAME (pid $TUNASYNC_PID) is running."
         else
             echo "$TUNASYNC_NAME is not running."
@@ -32,8 +32,8 @@ case "$1" in
     ;;
 
     stop)
-        if $StatBin -ef | grep -v grep | grep -q "tunasync manager";then
-            TUNASYNC_PID=`ps -ef | grep -v grep | grep "tunasync manager" | awk -F" " '{print $2}'`
+        if $StatBin -ef | grep -v grep | grep -q "tunasync worker";then
+            TUNASYNC_PID=`ps -ef | grep -v grep | grep "tunasync worker" | awk -F" " '{print $2}'`
             kill $TUNASYNC_PID
             echo "Stop $TUNASYNC_NAME...."
         else
