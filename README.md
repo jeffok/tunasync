@@ -4,8 +4,6 @@
 
 本项目是镜像服务器的前端与后台维护脚本源码。
 
-前端页面会定时（本项目默认为1分钟，注：定时刷新功能不支持 IE8 及以下浏览器）从后台获取各同步源数据状态，并刷新至浏览器。
-
 ### 默认配置
 
 - 源列表：CentOS，EPEL，Ubuntu，Pypi，ArchLinux，Ceph，OpenStack，Rocky，Debian
