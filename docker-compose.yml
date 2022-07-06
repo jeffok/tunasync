@@ -1,0 +1,25 @@
+version: "3.3"
+services:
+  tunasync:
+    image: jeffok/tunasync:0.8.0
+    container_name: tunasync
+    restart: always
+    volumes:
+      - ./conf:/etc/tunasync:ro
+      - ./mirrors:/mirrors
+    network_mode: "host"
+    ports:
+      - 12345:12345
+      - 6000:6000
+
+  web:
+    image: nginx:alpine
+    restart: always
+    volumes:
+      - ./mirrors:/mirrors
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./tunasync.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - 80:80
+    environment:
+    - NGINX_PORT=80
