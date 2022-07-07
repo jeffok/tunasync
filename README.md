@@ -8,7 +8,7 @@
 
 - 源列表：CentOS，EPEL，Ubuntu，Pypi，ArchLinux，Ceph，OpenStack，Rocky，Debian
 - 镜像路径：/data/tunasync/mirrors/
-- 配置文件：/data/tunasync/config/
+- 配置文件：/data/tunasync/conf/
 - 日志路径：/data/tunasync/logs/
 
 ### docker 编译
