@@ -17,29 +17,80 @@
 ## ✨ 特性
 
 - 🐳 **Docker 化部署**：一键启动，开箱即用
+- 🚀 **Docker Compose 支持**：最简单的部署方式，一条命令启动
 - 🔄 **多源支持**：支持 CentOS、EPEL、Ubuntu、ArchLinux、Debian、Rocky 等多种镜像源
-- 🚀 **CI/CD 集成**：自动构建并推送到 Docker Hub
+- 🔧 **CI/CD 集成**：自动构建并推送到 Docker Hub
 - 📦 **多平台支持**：支持 linux/amd64 和 linux/arm64 架构
 - ⚙️ **灵活配置**：支持自定义配置文件
 - 🔖 **自动更新**：自动拉取最新版本源码构建，无需手动更新
 
 ## 🚀 快速开始
 
-### 使用 Docker Compose（推荐）
+### 使用 Docker Compose（推荐，最简单）
+
+Docker Compose 是最简单的部署方式，一键启动所有服务。
+
+#### 1. 克隆仓库
 
 ```bash
-# 克隆仓库
 git clone https://github.com/jeffok/tunasync.git
 cd tunasync
+```
 
-# 启动服务
+#### 2. 启动服务
+
+```bash
+# 后台启动服务
 docker-compose up -d
+
+# 或者前台启动（查看实时日志）
+docker-compose up
+```
+
+#### 3. 查看服务状态
+
+```bash
+# 查看容器状态
+docker-compose ps
 
 # 查看日志
 docker-compose logs -f
+
+# 查看最近 100 行日志
+docker-compose logs --tail=100
 ```
 
-### 使用 Docker 命令
+#### 4. 管理服务
+
+```bash
+# 停止服务
+docker-compose stop
+
+# 重启服务
+docker-compose restart
+
+# 停止并删除容器
+docker-compose down
+
+# 停止并删除容器和卷（注意：会删除数据）
+docker-compose down -v
+```
+
+#### 5. 更新服务
+
+```bash
+# 拉取最新镜像
+docker-compose pull
+
+# 重新创建并启动容器
+docker-compose up -d
+```
+
+> **提示**：首次启动会自动创建 `mirrors` 和 `logs` 目录，配置文件位于 `conf/` 目录。
+
+### 使用 Docker 命令（高级用户）
+
+如果你更喜欢直接使用 Docker 命令，可以使用以下方式：
 
 ```bash
 # 拉取镜像
@@ -48,13 +99,25 @@ docker pull jeffok/tunasync:latest
 # 运行容器
 docker run -d \
   --name tunasync \
+  --restart always \
   -p 12345:12345 \
   -p 6000:6000 \
   -v $(pwd)/conf:/data/conf \
-  -v $(pwd)/mirrors:/data/mirrors \
+  -v $(pwd)/mirrors:/data/mirrors:rw \
   -v $(pwd)/logs:/data/logs \
   jeffok/tunasync:latest
+
+# 查看日志
+docker logs -f tunasync
+
+# 停止容器
+docker stop tunasync
+
+# 删除容器
+docker rm tunasync
 ```
+
+> **注意**：使用 Docker 命令需要手动管理卷和网络，推荐使用 Docker Compose。
 
 ### 手动构建镜像
 
