@@ -1,4 +1,3 @@
-version: "3.3"
 services:
   tunasync:
     image: jeffok/tunasync:0.8.0
