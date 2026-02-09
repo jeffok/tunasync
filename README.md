@@ -65,7 +65,7 @@ docker run -d \
 
 ```bash
 # 构建镜像（基于 Tunasync v0.9.3）
-docker build -t jeffok/tunasync:0.9.3 .
+docker build -t jeffok/tunasync:latest .
 
 # 运行容器
 docker run -d \
@@ -75,7 +75,7 @@ docker run -d \
   -v $(pwd)/conf:/data/conf \
   -v $(pwd)/mirrors:/data/mirrors \
   -v $(pwd)/logs:/data/logs \
-  jeffok/tunasync:0.9.3
+  jeffok/tunasync:latest
 ```
 
 ## 📁 目录结构
@@ -176,12 +176,12 @@ docker-compose restart
 
 ## 📦 Docker 镜像标签
 
-- `latest`：最新版本（main 分支，基于 Tunasync v0.9.3）
-- `0.9.3`：稳定版本（基于 Tunasync v0.9.3）
+- `latest`：最新版本（推荐使用，main 分支自动构建，基于 Tunasync v0.9.3）
+- `0.9.3`：稳定版本标签（基于 Tunasync v0.9.3）
 - `v*`：版本标签（如 v0.9.3）
 - `main-*`：分支构建（包含 commit SHA）
 
-> **注意**：当前镜像基于 [Tunasync v0.9.3](https://github.com/tuna/tunasync/releases/tag/v0.9.3)，这是最新的稳定版本（发布于 2025-02-28）。
+> **推荐**：使用 `latest` 标签可以自动获取最新构建的镜像。当前 `latest` 镜像基于 [Tunasync v0.9.3](https://github.com/tuna/tunasync/releases/tag/v0.9.3)，这是最新的稳定版本（发布于 2025-02-28）。
 
 ## 🛠️ 开发
 
@@ -193,7 +193,7 @@ git clone https://github.com/jeffok/tunasync.git
 cd tunasync
 
 # 构建镜像
-docker build -t jeffok/tunasync:dev .
+docker build -t jeffok/tunasync:latest .
 
 # 运行测试
 docker-compose up
