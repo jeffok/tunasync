@@ -13,9 +13,9 @@ ARG TARGETOS=linux
 
 RUN cd /go/src/github.com/tuna/tunasync && \
     GOARCH=${TARGETARCH} GOOS=${TARGETOS} make && \
-    BUILD_FILE=$(find build-* -type f -executable | head -1) && \
-    cp ${BUILD_FILE} /build-tunasync && \
-    cp ${BUILD_FILE} /build-tunasynctl
+    BUILD_DIR=$(find build-* -type d | head -1) && \
+    cp ${BUILD_DIR}/tunasync /build-tunasync && \
+    cp ${BUILD_DIR}/tunasynctl /build-tunasynctl
 
 FROM alpine:edge
 
