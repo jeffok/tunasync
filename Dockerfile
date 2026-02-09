@@ -1,11 +1,10 @@
 FROM golang:alpine as Tunasync
 
 LABEL maintainer="Jeff"
-LABEL version="0.9.3"
-LABEL description="Tunasync mirror synchronization tool based on v0.9.3"
+LABEL description="Tunasync mirror synchronization tool"
 
 ENV GO111MODULE=on
-ARG TUNASYNC_VERSION=v0.9.3
+ARG TUNASYNC_VERSION=master
 
 RUN apk update &&\
         apk add --no-cache ca-certificates gcc musl-dev git make &&\
