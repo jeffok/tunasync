@@ -1,12 +1,15 @@
 FROM golang:alpine as Tunasync
 
 LABEL maintainer="Jeff"
+LABEL version="0.9.3"
+LABEL description="Tunasync mirror synchronization tool based on v0.9.3"
 
-ENV GO111MODULE on
+ENV GO111MODULE=on
+ARG TUNASYNC_VERSION=v0.9.3
 
 RUN apk update &&\
         apk add --no-cache ca-certificates gcc musl-dev git make &&\
-        git clone https://github.com/tuna/tunasync.git /go/src/github.com/tuna/tunasync
+        git clone --branch ${TUNASYNC_VERSION} --depth 1 https://github.com/tuna/tunasync.git /go/src/github.com/tuna/tunasync
 
 ARG TARGETARCH=amd64
 ARG TARGETOS=linux

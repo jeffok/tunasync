@@ -1,6 +1,6 @@
 services:
   tunasync:
-    image: jeffok/tunasync:0.8.0
+    image: jeffok/tunasync:0.9.3
     container_name: tunasync
     restart: always
     volumes:

@@ -2,12 +2,22 @@
 
 [![Docker Build](https://github.com/jeffok/tunasync/workflows/Build%20and%20Push%20Docker%20Image/badge.svg)](https://github.com/jeffok/tunasync/actions)
 [![Docker Hub](https://img.shields.io/docker/pulls/jeffok/tunasync)](https://hub.docker.com/r/jeffok/tunasync)
+[![Version](https://img.shields.io/badge/version-0.9.3-blue)](https://github.com/tuna/tunasync/releases/tag/v0.9.3)
 
-基于 [Tunasync](https://github.com/tuna/tunasync) 的开源软件镜像站 Docker 镜像，提供便捷的镜像同步服务。
+基于 [Tunasync v0.9.3](https://github.com/tuna/tunasync) 的开源软件镜像站 Docker 镜像，提供便捷的镜像同步服务。
 
 ## 📋 项目简介
 
 本项目是镜像服务器的前端与后台维护脚本源码的 Docker 化实现，支持多种主流 Linux 发行版和软件仓库的镜像同步。
+
+**当前版本**：基于 [Tunasync v0.9.3](https://github.com/tuna/tunasync/releases/tag/v0.9.3)
+
+### Tunasync v0.9.3 新特性
+
+- ✅ 允许全局和每个镜像设置成功退出代码
+- ✅ 添加 `success_exit_codes` 镜像配置选项
+- ✅ 添加 `dangerous_global_success_exit_codes` 全局配置选项
+- ✅ 改进的错误处理和测试覆盖
 
 ## ✨ 特性
 
@@ -16,6 +26,7 @@
 - 🚀 **CI/CD 集成**：自动构建并推送到 Docker Hub
 - 📦 **多平台支持**：支持 linux/amd64 和 linux/arm64 架构
 - ⚙️ **灵活配置**：支持自定义配置文件
+- 🔖 **最新版本**：基于 Tunasync v0.9.3（2025-02-28 发布）
 
 ## 🚀 快速开始
 
@@ -53,8 +64,8 @@ docker run -d \
 ### 手动构建镜像
 
 ```bash
-# 构建镜像
-docker build -t jeffok/tunasync:0.8.0 .
+# 构建镜像（基于 Tunasync v0.9.3）
+docker build -t jeffok/tunasync:0.9.3 .
 
 # 运行容器
 docker run -d \
@@ -64,7 +75,7 @@ docker run -d \
   -v $(pwd)/conf:/data/conf \
   -v $(pwd)/mirrors:/data/mirrors \
   -v $(pwd)/logs:/data/logs \
-  jeffok/tunasync:0.8.0
+  jeffok/tunasync:0.9.3
 ```
 
 ## 📁 目录结构
@@ -165,9 +176,12 @@ docker-compose restart
 
 ## 📦 Docker 镜像标签
 
-- `latest`：最新版本（main 分支）
-- `v*`：版本标签（如 v0.8.0）
+- `latest`：最新版本（main 分支，基于 Tunasync v0.9.3）
+- `0.9.3`：稳定版本（基于 Tunasync v0.9.3）
+- `v*`：版本标签（如 v0.9.3）
 - `main-*`：分支构建（包含 commit SHA）
+
+> **注意**：当前镜像基于 [Tunasync v0.9.3](https://github.com/tuna/tunasync/releases/tag/v0.9.3)，这是最新的稳定版本（发布于 2025-02-28）。
 
 ## 🛠️ 开发
 
@@ -215,9 +229,18 @@ git push origin main
 
 ## 📚 相关链接
 
-- [Tunasync 官方文档](https://github.com/tuna/tunasync)
+- [Tunasync 官方仓库](https://github.com/tuna/tunasync)
+- [Tunasync v0.9.3 发布说明](https://github.com/tuna/tunasync/releases/tag/v0.9.3)
+- [Tunasync 中文文档](https://github.com/tuna/tunasync#get-started)
 - [Docker 官方文档](https://docs.docker.com/)
 - [Docker Compose 文档](https://docs.docker.com/compose/)
+
+## 📝 版本历史
+
+| 版本 | 基于 Tunasync | 发布日期 | 说明 |
+|------|--------------|---------|------|
+| 0.9.3 | v0.9.3 | 2025-02-28 | 最新稳定版本，支持成功退出代码配置 |
+| 0.8.0 | v0.8.0 | - | 旧版本（已弃用） |
 
 ---
 
